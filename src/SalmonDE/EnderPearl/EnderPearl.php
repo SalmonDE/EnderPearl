@@ -6,7 +6,6 @@ namespace SalmonDE\EnderPearl;
 use pocketmine\entity\Entity;
 use pocketmine\entity\projectile\Throwable;
 use pocketmine\Player;
-use pocketmine\event\entity\EntityDamageEvent;
 
 class EnderPearl extends Throwable {
 
@@ -45,9 +44,7 @@ class EnderPearl extends Throwable {
     public function teleportPlayer(): bool{
         if(($player = $this->getOwningEntity()) instanceof Player and $this->y > -1){
             $player->teleport($this, $player->getYaw(), $player->getPitch());
-            $player->attack(new EntityDamageEvent($player, EntityDamageEvent::CAUSE_FALL, 5));
-
-            $player->getServer()->getScheduler()->scheduleDelayedTask(new DelayedEffectsTask($player->getServer()->getPluginManager()->getPlugin('EnderPearl'), $this->asPosition(), $this->getViewers()), 1);
+            $player->getServer()->getScheduler()->scheduleDelayedTask(new DelayedEffectsTask($player->getServer()->getPluginManager()->getPlugin('EnderPearl'), $player, $this->getViewers()), 1);
 
             return true;
         }

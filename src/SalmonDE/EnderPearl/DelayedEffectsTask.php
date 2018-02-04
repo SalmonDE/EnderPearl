@@ -3,23 +3,26 @@ declare(strict_types = 1);
 
 namespace SalmonDE\EnderPearl;
 
+use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\Player;
 use pocketmine\scheduler\PluginTask;
 use pocketmine\level\sound\EndermanTeleportSound;
-use pocketmine\level\Position;
 
 class DelayedEffectsTask extends PluginTask {
 
-    protected $pos;
+    protected $player;
     protected $viewers;
 
-    public function __construct(EnderPearlMain $owner, Position $pos, array $viewers){
+    public function __construct(EnderPearlMain $owner, Player $player, array $viewers){
         parent::__construct($owner);
-        $this->pos = $pos;
-        $this->viewers;
+        $this->player = $player;
+        $this->viewers = $viewers;
     }
 
     public function onRun(int $currentTick): void{
-        $this->pos->getLevel()->addSound(new EndermanTeleportSound($this->pos), $this->viewers);
-        $this->pos->getLevel()->broadcastLevelEvent($this->pos, 2013);
+        $this->player->attack($event = new EntityDamageEvent($this->player, EntityDamageEvent::CAUSE_FALL, 5));
+
+        $this->player->getLevel()->addSound(new EndermanTeleportSound($this->player), $this->viewers);
+        $this->player->getLevel()->broadcastLevelEvent($this->player, 2013);
     }
 }
