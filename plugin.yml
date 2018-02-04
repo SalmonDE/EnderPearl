@@ -2,4 +2,4 @@ name: EnderPearl
 main: SalmonDE\EnderPearl\EnderPearlMain
 author: SalmonDE
 version: 1.0.7
-api: [3.0.0-ALPHA10]
+api: [3.0.0-ALPHA11]
