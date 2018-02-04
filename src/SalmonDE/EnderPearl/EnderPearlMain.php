@@ -26,10 +26,10 @@ class EnderPearlMain extends PluginBase implements Listener {
     }
 
     public function useEnderPearl(Player $player): void{
-        $this->enderPearlUses[$player->getLowerCaseName()] = round(microtime(true));
+        $this->enderPearlUses[$player->getLowerCaseName()] = microtime(true);
     }
 
     public function canUseEnderPearl(Player $player): bool{
-        return (round(microtime(true)) - ($this->enderPearlUses[$player->getLowerCaseName()] ?? 0)) >= 1;
+        return (microtime(true) - ($this->enderPearlUses[$player->getLowerCaseName()] ?? 0)) >= 1;
     }
 }
