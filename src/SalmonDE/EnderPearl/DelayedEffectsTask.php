@@ -11,16 +11,18 @@ use pocketmine\level\sound\EndermanTeleportSound;
 class DelayedEffectsTask extends PluginTask {
 
     protected $player;
+    protected $viewers;
 
-    public function __construct(EnderPearlMain $owner, Player $player){
+    public function __construct(EnderPearlMain $owner, Player $player, array $viewers){
         parent::__construct($owner);
         $this->player = $player;
+        $this->viewers = $viewers;
     }
 
     public function onRun(int $currentTick): void{
         $this->player->attack($event = new EntityDamageEvent($this->player, EntityDamageEvent::CAUSE_FALL, 5));
 
-        $this->player->getLevel()->addSound(new EndermanTeleportSound($this->player), $this->player->getViewers());
+        $this->player->getLevel()->addSound(new EndermanTeleportSound($this->player), $this->viewers);
         $this->player->getLevel()->broadcastLevelEvent($this->player, 2013);
     }
 }
