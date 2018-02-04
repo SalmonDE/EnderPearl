@@ -1,0 +1,5 @@
+name: EnderPearl
+main: SalmonDE\EnderPearl\EnderPearlMain
+author: SalmonDE
+version: 1.0.5
+api: [3.0.0-ALPHA10]
