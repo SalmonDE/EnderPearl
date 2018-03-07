@@ -46,9 +46,9 @@ class EnderPearl extends Throwable {
             $player->teleport($this, $player->getYaw(), $player->getPitch());
             $player->getServer()->getScheduler()->scheduleDelayedTask(new DelayedEffectsTask($player->getServer()->getPluginManager()->getPlugin('EnderPearl'), $player, $this->getViewers()), 1);
 
-            if(mt_rand(1, 100) < 6){
+            /*if(mt_rand(1, 20) === 1){
                 // spawn endermite
-            }
+            }*/
 
             return true;
         }
