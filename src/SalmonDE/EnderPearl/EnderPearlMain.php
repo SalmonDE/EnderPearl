@@ -6,6 +6,7 @@ namespace SalmonDE\EnderPearl;
 use pocketmine\entity\Entity;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -15,7 +16,8 @@ class EnderPearlMain extends PluginBase implements Listener {
     private $enderPearlUses = [];
 
     public function onEnable(): void{
-        ItemFactory::registerItem(new EnderPearlItem());
+        ItemFactory::registerItem($i = new EnderPearlItem());
+        Item::addCreativeItem($i);
         Entity::registerEntity(EnderPearl::class, false, ['Enderpearl', 'EnderPearl', 'minecraft:ender_pearl']);
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
