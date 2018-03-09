@@ -4,8 +4,6 @@ declare(strict_types = 1);
 namespace SalmonDE\EnderPearl;
 
 use pocketmine\item\ProjectileItem;
-use pocketmine\math\Vector3;
-use pocketmine\Player;
 
 class EnderPearlItem extends ProjectileItem {
 
@@ -25,12 +23,7 @@ class EnderPearlItem extends ProjectileItem {
         return 1.5;
     }
 
-    public function onClickAir(Player $player, Vector3 $directionVector): bool{
-        if(!($plugin = $player->getServer()->getPluginManager()->getPlugin('EnderPearl'))->canUseEnderPearl($player)){
-            return false;
-        }
-
-        $plugin->useEnderPearl($player);
-        return parent::onClickAir($player, $directionVector);
+    public function getCooldownTicks(): int{
+        return 20;
     }
 }
