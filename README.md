@@ -1,1 +1,1 @@
-# This plugin was just a small experiment and can therefore vary from vanilla minecraft behaviour
+# Obsolete since cc1a3d695f7deb223c9084c5af857d0f2b212dda
